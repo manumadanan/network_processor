@@ -24,17 +24,34 @@ module processor(
         input wire reset,
         
         //The monitor varaiables
-        output wire [31:0]pc_wire
+        output wire [31:0]pc_wire,
+        output wire [31:0]out1,
+        output wire [31:0]out2,
+        output wire [31:0]out3
     );
-    wire [31:0] next_instruction;
+    wire [31:0] next_instruction_addr;
+    wire [31:0] instruction;
     
     //static assignment
-    assign pc_wire = next_instruction;
+    assign pc_wire = next_instruction_addr;
     
     //The program counter
     pc prog_counter(
         .clk(clk),
         .reset(reset),
-        .pc(next_instruction)
+        .pc(next_instruction_addr)
     );
+    
+    //The program memory
+    program_memory pg(
+        .address(next_instruction_addr),
+        .data(instruction)
+    );
+    
+    //The control unit
+    control_unit cu(
+        .instruction(instruction),
+        .test_out(out1)
+    );
+    
 endmodule

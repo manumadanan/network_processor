@@ -18,12 +18,14 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-
-
 module simulator();
     // For the inputs
     reg clk;
     reg reset;
+    
+    wire [31:0]out1;
+    wire [31:0]out2;
+    wire [31:0]out3;
         
     // Fo rthe outputs [Monitoring purpose only]
     wire [31:0]pc_wire;
@@ -31,8 +33,11 @@ module simulator();
     processor p(
         .clk(clk),
         .reset(reset),
-        
-        .pc_wire(pc_wire)
+    
+        .pc_wire(pc_wire),
+        .out1(out1),
+        .out2(out2),
+        .out3(out3)
     );
     
     // Providing the base clock to the processor

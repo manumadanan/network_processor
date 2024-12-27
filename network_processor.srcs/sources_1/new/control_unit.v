@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 27.12.2024 16:15:19
+// Create Date: 27.12.2024 17:26:59
 // Design Name: 
-// Module Name: program_memory
+// Module Name: control_unit
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -18,18 +18,11 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-module program_memory(
-        input wire [31:0] address,
-        output reg [31:0] data
+
+
+module control_unit(
+        input wire [31:0] instruction,
+        input wire [31:0] test_out
     );
-    reg [31:0] mem[31:0];
-    always @(*) begin
-        data <= mem[address];
-    end
-    initial begin
-       mem[0] <= 15;
-       mem[1] <= 25;
-       mem[2] <= 35;
-       mem[3] <= 45;
-    end
+    assign test_out = instruction;
 endmodule
